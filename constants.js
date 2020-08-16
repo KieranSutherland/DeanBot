@@ -13,3 +13,8 @@ export const leMemeSupremeRoleId = '257637882112507904';
 
 // User Id
 export const deanUserId = '705420522313220097';
+export const deanRoleId = '732595910344704141';
+
+// Resources
+export const fartNoisesDir = './resources/fart_noises/';
+export const picDir = './resources/dean_pics/';
