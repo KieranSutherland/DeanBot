@@ -3,6 +3,7 @@ import { pic } from './commands/pic.js';
 import { help } from './commands/help.js';
 import { msgToChannel } from './commands/msgToChannel.js';
 import { fartNoises } from './commands/fartNoises.js';
+import { exileUser } from './commands/exileUser.js';
 import * as constants from './constants.js';
 
 export let commandMap = {
@@ -10,6 +11,7 @@ export let commandMap = {
     'pic' : pic,
     'msgtochannel' : msgToChannel,
     'fartnoises' : fartNoises,
+    'exileuser' : exileUser,
     'help' : help
 };
 
