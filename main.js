@@ -1,36 +1,38 @@
-import Discord, { User, VoiceChannel } from 'discord.js';
+import Discord from 'discord.js';
 import { runCommand } from './commandController.js';
+import { backToWorkDeanVoiceJoin } from './voiceStateCommands/backToWorkDeanVoiceJoin.js';
+import { fartNoiseVoiceJoin } from './voiceStateCommands/fartNoiseVoiceJoin.js';
+import { exileUserVoiceJoin } from './voiceStateCommands/exileUserVoiceJoin.js';
 import * as constants from './constants.js';
 
-let client = new Discord.Client(); // The bot
+var client = new Discord.Client(); // The bot
 
-// Tell Dean to get back to work when he enters a voice channel
- client.on('voiceStateUpdate', (oldMember, newMember) => {
+client.on('voiceStateUpdate', (oldMember, newMember) => {
 
-    if(!oldMember.channel && newMember.channel){
+    // Tell Dean to get back to work when he enters a voice channel
+    backToWorkDeanVoiceJoin(oldMember, newMember);
 
-        let channelMembers = newMember.channel.members;
-        let userIds = [];
+    // Play fart noise whenever someone joins a channel
+    fartNoiseVoiceJoin(oldMember, newMember);
 
-        for (let [ snowflake, guildMember ] of channelMembers) { userIds.push(guildMember.user.id) }
-
-        if(userIds.includes(constants.deanUserId)){
-            client.channels.cache.get('257622197420556288').send('GET BACK TO WORK DEAN');
-        }
-    }
-}) 
+    // Check if new user is the one to be avoided, if so, take him away
+    exileUserVoiceJoin(oldMember, newMember);
+    
+})
 
 // Command handler and dean shutter-upper
 client.on('message', message => {
 
-    if(!message.content.startsWith(constants.prefix) || message.author.bot) {
-        if(message.member.roles.cache.has(constants.deanRoleId)) {
+    if(message.author.id === constants.deanUserId) {
+        if(message.content.startsWith(constants.prefix)) {
+            message.channel.send('Fuck off Dean you\'re not allowed to use this bot YOU STINK');
+        } else {
             message.channel.send('> ' + message.content + '\nShut up Dean');
         }
         return;
-    } 
-    if(message.member.roles.cache.has(constants.deanRoleId)) {
-        message.channel.send('Fuck off Dean you\'re not allowed to use this bot YOU STINK');
+    }
+
+    if(message.author.bot || !message.content.startsWith("!")) {
         return;
     }
 
