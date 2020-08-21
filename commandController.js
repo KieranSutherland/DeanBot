@@ -10,8 +10,8 @@ export let commandMap = {
     'insult' : insult,
     'pic' : pic,
     'msgtochannel' : msgToChannel,
-    'fartnoises' : fartNoises,
-    'exileuser' : exileUser,
+    'fart' : fartNoises,
+    'exile' : exileUser,
     'help' : help
 };
 
