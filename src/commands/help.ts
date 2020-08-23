@@ -1,4 +1,4 @@
-const helpMessage = '```' +
+const helpMessage: string = '```' +
                     'Need help do you, little bitch? Here are the current supported commands:' +
                     '\n\t!insult - send a random insult about Dean' +
                     '\n\t!pic - send a random pic of Dean' +
@@ -7,4 +7,4 @@ const helpMessage = '```' +
                     '\n\t!exile - exiles the specified user (use our irl names)'
                     '```';
 
-export const help = (message) => message.channel.send(helpMessage);
+export const help = (message: any) => message.channel.send(helpMessage);

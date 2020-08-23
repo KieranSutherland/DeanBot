@@ -7,7 +7,7 @@ import * as constants from './constants.js';
 
 var client = new Discord.Client(); // The bot
 
-client.on('voiceStateUpdate', (oldMember, newMember) => {
+client.on('voiceStateUpdate', (oldMember: any, newMember: any) => {
 
     // Tell Dean to get back to work when he enters a voice channel
     backToWorkDeanVoiceJoin(oldMember, newMember);
@@ -21,7 +21,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 })
 
 // Command handler and dean shutter-upper
-client.on('message', message => {
+client.on('message', (message: any) => {
 
     if(message.author.id === constants.deanUserId) {
         if(message.content.startsWith(constants.prefix)) {

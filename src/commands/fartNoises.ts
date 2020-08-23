@@ -1,18 +1,18 @@
 import fs from 'fs';
 import path from 'path';
-import * as constants from './../constants.js';
+import * as constants from '../constants.js';
 
 const getListOfFartFilenames = () => fs.readdirSync(constants.fartNoisesDir);
 
 const getRandomFartFilename = () => getListOfFartFilenames()[Math.floor(Math.random() * getListOfFartFilenames().length)];
 
-export const fartNoises = (message) => {
+export const fartNoises = (message: any) => {
     playFartNoise(message.member.voice.channel);
 }
 
-export const playFartNoise = (voiceChannel) => {
+export const playFartNoise = (voiceChannel: any) => {
     if(!voiceChannel) return;
-    voiceChannel.join().then(connection => {
+    voiceChannel.join().then((connection: any): any => {
         // connection.on('speaking', handleVocalMessage);
         // connection.on('guildMemberSpeaking', handleVocalMessage);
         // connection.on('speaking', (user, speaking) => {
@@ -34,10 +34,10 @@ export const playFartNoise = (voiceChannel) => {
         //     }
         //   });
         const dispatcher = connection.play(path.join(constants.fartNoisesDir, getRandomFartFilename()));
-        dispatcher.on("end", end => voiceChannel.leave());
+        dispatcher.on("end", (end: any) => voiceChannel.leave());
     });
 }
 
-const handleVocalMessage = (userOrMember, speaking) => {
+const handleVocalMessage = (userOrMember: any, speaking: any) => {
     console.log(userOrMember.displayName || userOrMember.username, "is talking?", speaking);
   }

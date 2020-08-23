@@ -6,7 +6,7 @@ import { fartNoises } from './commands/fartNoises.js';
 import { exileUser } from './commands/exileUser.js';
 import * as constants from './constants.js';
 
-export let commandMap = {
+export let commandMap: any = {
     'insult' : insult,
     'pic' : pic,
     'msgtochannel' : msgToChannel,
@@ -15,9 +15,9 @@ export let commandMap = {
     'help' : help
 };
 
-export const runCommand = (message) => {
-    let arg = message.content.substr(constants.prefix.length);
-    let command = arg.substr(0, arg.includes(' ') ? arg.indexOf(' ') : arg.length).toLowerCase();
+export const runCommand = (message: any) => {
+    let arg: string = message.content.substr(constants.prefix.length);
+    let command: string = arg.substr(0, arg.includes(' ') ? arg.indexOf(' ') : arg.length).toLowerCase();
 
     if(!commandMap[command]) {
         message.channel.send('That command doesn\'t exist, dickhead. Type !help to display list of commands');

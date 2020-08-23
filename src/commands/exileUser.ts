@@ -1,15 +1,15 @@
-import { exileUserVoiceJoin } from './../voiceStateCommands/exileUserVoiceJoin.js';
-import * as constants from './../constants.js';
+import { exileUserVoiceJoin } from '../voiceStateCommands/exileUserVoiceJoin.js';
+import * as constants from '../constants.js';
 
-export var usernameToAvoid = null;
+export var usernameToAvoid: any = null;
 
-export const exileUser = (message) => {
+export const exileUser = (message: any) => {
     let args = message.content.split(' ');
     if(args.length < 2) {
         message.channel.send('```Error: gotta specify a user to avoid as a parameter, retard\nUse !help for help```');
         return;
     }
-    let userParam = args[1].toLowerCase();
+    let userParam: string = args[1].toLowerCase();
     if(userParam === 'reset') {
         message.channel.send('Exile for ' + usernameToAvoid + ' has now been reset');
         usernameToAvoid = null;

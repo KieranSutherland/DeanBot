@@ -1,17 +1,23 @@
 #! /bin/sh
 pubkey="wehatedeanbot.pem"
+buildDir="build"
 
-[[ -d build ]] && rm -rf build
-mkdir -p build
-# pull contents from master branch on git instead? maybe also zip it?-
-ls -I wehatedeanbot.pem -I wehatedeanbot.ppk -I node_modules -I build -I dependencies -I deployBuildToAWS.sh | xargs cp -rf -t build
+npm run "${buildDir}"
+[[ -d "${buildDir}" ]] && rm -rf "${buildDir}"
+mkdir -p "${buildDir}"
 
-ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "forever stopall; rm -rf build"
+# pull contents from master branch on git instead? maybe also zip it?
+cp -rf dist/. "${buildDir}"
+cp -rf resources "${buildDir}"
+cp package.json "${buildDir}"
+cp package-lock.json "${buildDir}"
 
-scp -r -i "${pubkey}" -o StrictHostKeyChecking=no build ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com:~/
+ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "forever stopall; rm -rf "${buildDir}""
 
-# important to cd into build here before starting forever command, otherwise the paths the app uses are all wrong and nothing works
-ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd build; npm install; forever start main.js"
+scp -r -i "${pubkey}" -o StrictHostKeyChecking=no "${buildDir}" ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com:~/
 
-rm -rf build
+# important to cd into buildDir here before starting forever command, otherwise the paths the app uses are all wrong and nothing works
+ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd "${buildDir}"; npm install; forever start main.js"
+
+rm -rf "${buildDir}"
 
