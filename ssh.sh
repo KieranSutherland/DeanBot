@@ -1,0 +1,1 @@
+ssh -i "wehatedeanbot.pem" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com

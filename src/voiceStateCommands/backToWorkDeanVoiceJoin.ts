@@ -5,7 +5,7 @@ export const backToWorkDeanVoiceJoin = (oldMember: any, newMember: any) => {
     if(!oldMember.channel && newMember.channel && oldMember.id == constants.deanUserId) {
 
         if(commandsUtil.getUserIds(newMember.channel).includes(constants.deanUserId)){
-            newMember.client.channels.cache.get(constants.normies).send('GET BACK TO WORK DEAN');
+            newMember.client.channels.cache.get(constants.normies).send('GET A JOB DEAN');
         }
     }
 }
