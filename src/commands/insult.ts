@@ -1,3 +1,5 @@
+import { Message } from 'discord.js';
+
 const insults: string[] = [
     "You big fat stinky hairy ugly stupid autistic slime",
     "Your mother is a whore",
@@ -6,4 +8,4 @@ const insults: string[] = [
     "How's that degree going?"
 ];
 
-export const insult = (message: any) => message.channel.send(insults[Math.floor(Math.random() * insults.length)]);
+export const insult = (message: Message) => message.channel.send(insults[Math.floor(Math.random() * insults.length)]);

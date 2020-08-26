@@ -1,10 +1,11 @@
+import { Message } from 'discord.js';
 import { exileUserVoiceJoin } from '../voiceStateCommands/exileUserVoiceJoin.js';
 import * as constants from '../constants.js';
 
 export var usernameToAvoid: any = null;
 
-export const exileUser = (message: any) => {
-    let args = message.content.split(' ');
+export const exileUser = (message: Message) => {
+    let args: string[] = message.content.split(' ');
     if(args.length < 2) {
         message.channel.send('```Error: gotta specify a user to avoid as a parameter, retard\nUse !help for help```');
         return;

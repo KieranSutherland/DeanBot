@@ -21,7 +21,7 @@ client.on('voiceStateUpdate', (oldMember: any, newMember: any) => {
 })
 
 // Command handler and dean shutter-upper
-client.on('message', (message: any) => {
+client.on('message', (message: Discord.Message) => {message.channel
 
     if(message.author.id === constants.deanUserId) {
         if(message.content.startsWith(constants.prefix)) {

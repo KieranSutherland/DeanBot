@@ -1,8 +1,10 @@
+import { Message } from 'discord.js';
 import { insult } from './commands/insult.js';
 import { pic } from './commands/pic.js';
 import { help } from './commands/help.js';
 import { msgToChannel } from './commands/msgToChannel.js';
 import { fartNoises } from './commands/fartNoises.js';
+import { activity } from './commands/activity.js';
 import { exileUser } from './commands/exileUser.js';
 import * as constants from './constants.js';
 
@@ -12,10 +14,11 @@ export let commandMap: any = {
     'msgtochannel' : msgToChannel,
     'fart' : fartNoises,
     'exile' : exileUser,
+    'activity' : activity,
     'help' : help
 };
 
-export const runCommand = (message: any) => {
+export const runCommand = (message: Message) => {
     let arg: string = message.content.substr(constants.prefix.length);
     let command: string = arg.substr(0, arg.includes(' ') ? arg.indexOf(' ') : arg.length).toLowerCase();
 
@@ -23,5 +26,6 @@ export const runCommand = (message: any) => {
         message.channel.send('That command doesn\'t exist, dickhead. Type !help to display list of commands');
         return;
     }
+    
     commandMap[command](message);
 }
