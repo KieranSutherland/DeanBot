@@ -8,7 +8,7 @@
     "start": "node --experimental-modules dist/main.js ",
     "prebuild": "rm -rf dist",
     "build": "tsc -p tsconfig.json",
-    "dev": "ts-node src/main.ts"
+    "dev": "npm run build && node ."
   },
   "author": "Kieran",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "discord.js": "^12.3.0",
     "forever": "^3.0.0",
     "fs": "0.0.1-security",
+    "google-tts-api": "0.0.4",
     "path": "^0.12.7"
   },
   "devDependencies": {

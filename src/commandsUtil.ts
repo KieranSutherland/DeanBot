@@ -1,3 +1,5 @@
+import Discord from 'discord.js';
+
 export const getUserIds = (channel: any) => {
     let userIds: any = [];
     if(!channel) return userIds;

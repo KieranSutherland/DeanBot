@@ -6,6 +6,7 @@ import { msgToChannel } from './commands/msgToChannel.js';
 import { fartNoises } from './commands/fartNoises.js';
 import { activity } from './commands/activity.js';
 import { exileUser } from './commands/exileUser.js';
+import { say } from './commands/say.js'
 import * as constants from './constants.js';
 
 export let commandMap: any = {
@@ -15,6 +16,7 @@ export let commandMap: any = {
     'fart' : fartNoises,
     'exile' : exileUser,
     'activity' : activity,
+    'say' : say,
     'help' : help
 };
 

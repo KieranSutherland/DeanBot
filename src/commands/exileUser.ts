@@ -2,7 +2,7 @@ import { Message } from 'discord.js';
 import { exileUserVoiceJoin } from '../voiceStateCommands/exileUserVoiceJoin.js';
 import * as constants from '../constants.js';
 
-export var usernameToAvoid: any = null;
+export var usernameToAvoid: string = "";
 
 export const exileUser = (message: Message) => {
     let args: string[] = message.content.split(' ');
@@ -13,7 +13,7 @@ export const exileUser = (message: Message) => {
     let userParam: string = args[1].toLowerCase();
     if(userParam === 'reset') {
         message.channel.send('Exile for ' + usernameToAvoid + ' has now been reset');
-        usernameToAvoid = null;
+        usernameToAvoid = "";
         return;
     }
     if(!constants.nameToUserId[userParam]) {
@@ -24,5 +24,5 @@ export const exileUser = (message: Message) => {
     message.channel.send('Everyone is now avoiding ' + usernameToAvoid + ' (any previous exile has been removed)');
 
     // Move user to exile if they're already in a channel
-    exileUserVoiceJoin(undefined, message);
+    exileUserVoiceJoin(message);
 }

@@ -7,7 +7,7 @@ import * as constants from './constants.js';
 
 var client = new Discord.Client(); // The bot
 
-client.on('voiceStateUpdate', (oldMember: any, newMember: any) => {
+client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord.VoiceState) => {
 
     // Tell Dean to get back to work when he enters a voice channel
     backToWorkDeanVoiceJoin(oldMember, newMember);
@@ -16,12 +16,12 @@ client.on('voiceStateUpdate', (oldMember: any, newMember: any) => {
     fartNoiseVoiceJoin(oldMember, newMember);
 
     // Check if new user is the one to be avoided, if so, take him away
-    exileUserVoiceJoin(oldMember, newMember);
+    exileUserVoiceJoin(newMember);
     
 })
 
 // Command handler and dean shutter-upper
-client.on('message', (message: Discord.Message) => {message.channel
+client.on('message', (message: Discord.Message) => {
 
     if(message.author.id === constants.deanUserId) {
         if(message.content.startsWith(constants.prefix)) {
