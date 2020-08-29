@@ -15,6 +15,7 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "discord.js": "^12.3.0",
+    "ffmpeg-static": "^4.2.7",
     "forever": "^3.0.0",
     "fs": "0.0.1-security",
     "google-tts-api": "0.0.4",
