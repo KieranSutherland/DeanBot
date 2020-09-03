@@ -14,7 +14,8 @@ export const say = async (message: Message) => {
     if(!voiceChannel) return;
 
     const connection = await voiceChannel.join();
-    GoogleTTS(sentence, 'en-UK', 1) // speed normal = 1
+    // Go to for supported language codes: https://cloud.google.com/speech-to-text/docs/languages
+    GoogleTTS(sentence, 'en-GB', 1) // speed normal = 1
         .then(function (url: any) {
             connection.play(url);
         })

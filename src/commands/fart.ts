@@ -7,7 +7,7 @@ const getListOfFartFilenames = () => fs.readdirSync(constants.fartNoisesDir);
 
 const getRandomFartFilename = () => getListOfFartFilenames()[Math.floor(Math.random() * getListOfFartFilenames().length)];
 
-export const fartNoises = (message: Message) => {
+export const fart = (message: Message) => {
     playFartNoise(message.member?.voice.channel);
 }
 

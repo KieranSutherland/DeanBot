@@ -10,7 +10,7 @@ var client = new Discord.Client(); // The bot
 client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord.VoiceState) => {
 
     // Tell Dean to get back to work when he enters a voice channel
-    backToWorkDeanVoiceJoin(oldMember, newMember);
+    // backToWorkDeanVoiceJoin(oldMember, newMember); temporarily removed because it's annoying
 
     // Play fart noise whenever someone joins a channel
     fartNoiseVoiceJoin(oldMember, newMember);
@@ -22,10 +22,10 @@ client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord
 
 // Command handler and dean shutter-upper
 client.on('message', (message: Discord.Message) => {
-
-    if(message.author.id === constants.deanUserId) {
+    
+    if(message.author.id === constants.deanUserId && new Date().getDay() != 0) {
         if(message.content.startsWith(constants.prefix)) {
-            message.channel.send('Fuck off Dean you\'re not allowed to use this bot YOU STINK');
+            message.channel.send('Fuck off Dean you\'re only allowed to use commands on Sundays because YOU STINK');
         } else {
             message.channel.send('> ' + message.content + '\nShut up Dean');
         }
