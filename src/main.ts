@@ -1,9 +1,10 @@
 import Discord from 'discord.js';
+import * as constants from './constants.js';
 import { runCommand } from './commandController.js';
 import { backToWorkDeanVoiceJoin } from './voiceStateCommands/backToWorkDeanVoiceJoin.js';
 import { fartNoiseVoiceJoin } from './voiceStateCommands/fartNoiseVoiceJoin.js';
 import { exileUserVoiceJoin } from './voiceStateCommands/exileUserVoiceJoin.js';
-import * as constants from './constants.js';
+import { dailyPic } from './dailyPic.js';
 
 var client = new Discord.Client(); // The bot
 
@@ -39,5 +40,12 @@ client.on('message', (message: Discord.Message) => {
     runCommand(message);
 });
 
-console.log("Bot online");
+// Daily Dean pic
+client.on('ready', () => {
+    console.log("Bot online");
+    
+    dailyPic(client);
+});
+
+
 client.login(constants.loginKey);

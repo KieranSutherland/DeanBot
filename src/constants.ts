@@ -4,6 +4,8 @@ export const loginKey: string = 'NzQ0MTc1ODUwODMxODcyMDgw.XzfZxA.x5EstcgbGmduhWr
 // Command prefix
 export const prefix: string = '!';
 
+export const guildId: string = '257622197420556288';
+
 // Channel IDs
 export const normies: string = '257622197420556288';
 export const exile: string = '703302141112221850';
