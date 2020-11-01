@@ -9,6 +9,7 @@ import { activity } from './commands/activity.js';
 import { exileUser } from './commands/exileUser.js';
 import { say } from './commands/say.js'
 import * as constants from './constants.js';
+import { radio } from './commands/radio.js';
 
 export let commandMap: any = {
     'insult' : insult,
@@ -18,7 +19,8 @@ export let commandMap: any = {
     'exile' : exileUser,
     'activity' : activity,
     'say' : say,
-    'help' : help
+    'help' : help,
+    'radio' : radio
 };
 
 export const runCommand = (message: Message) => {

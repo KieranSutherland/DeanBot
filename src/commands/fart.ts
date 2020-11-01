@@ -1,4 +1,4 @@
-import { Message, VoiceChannel } from 'discord.js';
+import { Message, Speaking, VoiceChannel, VoiceStateManager } from 'discord.js';
 import fs from 'fs';
 import path from 'path';
 import * as constants from '../constants.js';
@@ -12,9 +12,11 @@ export const fart = (message: Message) => {
 }
 
 export const playFartNoise = async (voiceChannel: VoiceChannel | null | undefined) => {
+
     if(!voiceChannel) return;
 
     const connection = await voiceChannel.join();
+
     const dispatcher = connection.play(path.join(constants.fartNoisesDir, getRandomFartFilename()));
     dispatcher.on("end", (end: any) => voiceChannel.leave());
 }

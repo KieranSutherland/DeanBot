@@ -47,5 +47,17 @@ client.on('ready', () => {
     dailyPic(client);
 });
 
+/*  TO FART ON DEAN
+client.on('guildMemberSpeaking', (member, speaking) => {
+
+    console.log('guildmemberspeaking')
+    console.log("member:  ",  member.displayName)
+
+    if(member.id === constants.botUserId && speaking){
+        console.log('BOT IS TALKING')
+    }
+
+}) */
+
 
 client.login(constants.loginKey);

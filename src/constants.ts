@@ -26,6 +26,7 @@ export const johnUserId: string = '186541198503182336';
 export const sahandUserId: string = '205159613404938241';
 export const davidUserId: string = '182539648076218369';
 export const craggyUserId: string = '259763282645221377';
+export const botUserId: string = '744175850831872080';
 
 // Name to User Id map
 export const nameToUserId: any = {
