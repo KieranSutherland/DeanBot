@@ -1,4 +1,4 @@
-import { Message, Speaking, VoiceChannel, VoiceStateManager } from 'discord.js';
+import { Message, VoiceChannel } from 'discord.js';
 import fs from 'fs';
 import path from 'path';
 import * as constants from '../constants.js';

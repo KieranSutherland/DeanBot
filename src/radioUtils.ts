@@ -1,5 +1,8 @@
 import axios from 'axios'
+import { response } from 'express'
+import jsdom from 'jsdom'
 
+const JSDOM = jsdom.JSDOM
 const AxiosInstance = axios.create()
 
 const classicStation = (): string => {
@@ -32,13 +35,19 @@ const jazzStation = (): string => {
 }
 
 export const radioMetaData = (stationUrl: string) => {
+    console.log('in metdata')
+    let responseData: any;
 
     AxiosInstance.get(stationUrl)
         .then(
             response => {
-                console.log(response.data)
+                //console.log(response.data)
+                responseData = response.data
             }
         ).catch(console.error)
+
+    const dom = new JSDOM(responseData)
+    console.log(JSON.stringify(dom.window.JSON))
 
 }
 
