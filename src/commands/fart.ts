@@ -12,7 +12,6 @@ export const fart = (message: Message) => {
 }
 
 export const playFartNoise = async (voiceChannel: VoiceChannel | null | undefined) => {
-
     if(!voiceChannel) return;
 
     const connection = await voiceChannel.join();

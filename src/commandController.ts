@@ -11,7 +11,7 @@ import { say } from './commands/say.js'
 import * as constants from './constants.js';
 import { radio } from './commands/radio.js';
 
-export let commandMap: any = {
+const commandMap: any = {
     'insult' : insult,
     'pic' : pic,
     'msgtochannel' : msgToChannel,

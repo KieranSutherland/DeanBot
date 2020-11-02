@@ -7,7 +7,7 @@ command=${command,,} # converts to lowercase
 if [ ${command} == "start" ]; then
     ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd "${buildDir}"; forever start main.js"
 elif [ ${command} == "stop" ]; then
-    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd "${buildDir}"; forever stopall"
+    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "forever stopall"
 elif [ ${command} == "deploy" ]; then
     ./deployBuildToAWS.sh
 else
