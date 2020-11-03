@@ -5,27 +5,25 @@ import jsdom from 'jsdom'
 import { connect } from 'http2'
 import { playFartNoise } from './fart'
 import BeautifulDom from 'beautiful-dom'
+import Axios from 'axios'
 
 const JSDOM = jsdom.JSDOM
 const AxiosInstance = axios.create()
 var currentStationUrl = ''
 
 const stations: any = {
-	'jazz': [
-		'http://us2.internet-radio.com:8443/',
-		// 'http://us5.internet-radio.com:8096/',
-		// 'http://us4.internet-radio.com:8266/',
+	'dave': [
 		'http://uk6.internet-radio.com:8179/',
-		// 'http://us3.internet-radio.com:8485/',
-		// 'http://us5.internet-radio.com:8022/',
-		// 'http://uk3.internet-radio.com:8048/'
-	],
+    ],
+    'megaton': [
+        'http://us2.internet-radio.com:8443/'
+    ],
     'classical': [
 		'http://uk2.internet-radio.com:31491/',
 		'http://uk7.internet-radio.com:8000/',
 		'http://uk3.internet-radio.com:8405/'
 	],
-    //'christmas' : christmasStation 
+     //christmas
 }
 
 export const radio = (message: Message) => {
@@ -54,11 +52,6 @@ const play = async (message: Message) => {
     const genre: string = args[2]
     const stationUrl: string = getRandomStationUrl(genre)
 
-    console.log(stationUrl)
-
-
-    radioMetaData(stationUrl)
-
     const vc = await VoiceChannel.join()
 	vc.play(stationUrl, { volume: 0.314159265359 })
 	currentStationUrl = stationUrl
@@ -74,13 +67,14 @@ const who = () => {
 
 const help = (message: Message) => {
     const helpMessage: string = `
-        Radio Retard FM: 
+        Radio Retd FM: 
         \n\n !radio play (genre/radio name)  - play radio of genre/name
         \n\n !radio pause - pause da radio
         \n\n !radio who - who DA FUCK is playin right now??
         `;
     message.channel.send(helpMessage)
 }
+
 
 const commandMap: any = {
 	'play': play,
@@ -89,32 +83,33 @@ const commandMap: any = {
     'help': help
 }
 
-const radioMetaData = (stationUrl: string) => {
-    console.log('in metadata')
+const radioMetaData = async (stationUrl: string) => {
+
     var responseData: any;
 
-    AxiosInstance.get(stationUrl)
-        .then(
-            response => {
-                //console.log(response.data)
-                responseData = response.data
-                console.log(JSON.stringify(response))
-            }
-        ).catch(console.error)
+    console.log('in HELP H ELP EHELP HELKP')
+    console.log(stationUrl)
 
-    //const dom = new BeautifulDom(responseData)
-    //console.log(dom)
+    try{
+        responseData = await AxiosInstance.get(stationUrl)
+    }catch(e){
+        console.log(e)
+    }
 
+    responseData ? console.log("responseData: ", responseData) : console.log("none")
 }
-
 
 
 const getRandomStationUrl = (genre: string) => {
 	if (!stations[genre]) {
 		return
 	}
-	const selectedStations = stations[genre]
-	return selectedStations[Math.floor(Math.random() * selectedStations.length)]
+    const selectedStations = stations[genre]
+    let station = selectedStations[Math.floor(Math.random() * selectedStations.length)]
+        
+    radioMetaData(station)
+    return station
+
 }
 
 export const playOtherSound = (connection: VoiceConnection) => {
