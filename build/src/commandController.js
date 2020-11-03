@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.runCommand = exports.commandMap = void 0;
+exports.runCommand = void 0;
 // import { insult, pic, help, msgToChannel, fart, activity, exileUser, say } from './commands/Commands';
 const insult_js_1 = require("./commands/insult.js");
 const pic_js_1 = require("./commands/pic.js");
@@ -31,7 +31,7 @@ const exileUser_js_1 = require("./commands/exileUser.js");
 const say_js_1 = require("./commands/say.js");
 const constants = __importStar(require("./constants.js"));
 const radio_js_1 = require("./commands/radio.js");
-exports.commandMap = {
+const commandMap = {
     'insult': insult_js_1.insult,
     'pic': pic_js_1.pic,
     'msgtochannel': msgToChannel_js_1.msgToChannel,
@@ -45,9 +45,9 @@ exports.commandMap = {
 exports.runCommand = (message) => {
     let arg = message.content.substr(constants.prefix.length);
     let command = arg.substr(0, arg.includes(' ') ? arg.indexOf(' ') : arg.length).toLowerCase();
-    if (!exports.commandMap[command]) {
+    if (!commandMap[command]) {
         message.channel.send('That command doesn\'t exist, dickhead. Type !help to display list of commands');
         return;
     }
-    exports.commandMap[command](message);
+    commandMap[command](message);
 };

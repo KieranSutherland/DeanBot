@@ -1,21 +1,24 @@
-import { Message, VoiceChannel } from 'discord.js';
+import { Message, VoiceChannel, VoiceConnection } from 'discord.js';
 import fs from 'fs';
 import path from 'path';
 import * as constants from '../constants.js';
+import { playOtherSound } from './radio.js';
 
 const getListOfFartFilenames = () => fs.readdirSync(constants.fartNoisesDir);
 
 const getRandomFartFilename = () => getListOfFartFilenames()[Math.floor(Math.random() * getListOfFartFilenames().length)];
 
-export const fart = (message: Message) => {
-    playFartNoise(message.member?.voice.channel);
-}
+export const fart = async (message: Message) => {
 
-export const playFartNoise = async (voiceChannel: VoiceChannel | null | undefined) => {
+    let voiceChannel = message.member?.voice.channel
+
     if(!voiceChannel) return;
 
     const connection = await voiceChannel.join();
 
-    const dispatcher = connection.play(path.join(constants.fartNoisesDir, getRandomFartFilename()));
-    dispatcher.on("end", (end: any) => voiceChannel.leave());
+    playOtherSound(connection);
+}
+
+export const playFartNoise = async (voiceConnection: VoiceConnection | null | undefined) => {
+    voiceConnection?.play(path.join(constants.fartNoisesDir, getRandomFartFilename()))
 }

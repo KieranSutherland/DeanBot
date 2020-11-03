@@ -2,7 +2,7 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/src/main.js",
   "scripts": {
     "start": "node --experimental-modules dist/main.js ",
     "prebuild": "rm -rf dist",

@@ -2,6 +2,9 @@ import { Message, VoiceChannel, VoiceConnection } from 'discord.js'
 import axios from 'axios'
 import { response } from 'express'
 import jsdom from 'jsdom'
+import { connect } from 'http2'
+import { playFartNoise } from './fart'
+import BeautifulDom from 'beautiful-dom'
 
 const JSDOM = jsdom.JSDOM
 const AxiosInstance = axios.create()
@@ -53,6 +56,7 @@ const play = async (message: Message) => {
 
     console.log(stationUrl)
 
+
     radioMetaData(stationUrl)
 
     const vc = await VoiceChannel.join()
@@ -86,7 +90,7 @@ const commandMap: any = {
 }
 
 const radioMetaData = (stationUrl: string) => {
-    console.log('in metdata')
+    console.log('in metadata')
     var responseData: any;
 
     AxiosInstance.get(stationUrl)
@@ -94,12 +98,16 @@ const radioMetaData = (stationUrl: string) => {
             response => {
                 //console.log(response.data)
                 responseData = response.data
+                console.log(JSON.stringify(response))
             }
         ).catch(console.error)
 
-    const dom = new JSDOM(responseData)
-    console.log(JSON.stringify(dom.window.JSON))
+    //const dom = new BeautifulDom(responseData)
+    //console.log(dom)
+
 }
+
+
 
 const getRandomStationUrl = (genre: string) => {
 	if (!stations[genre]) {
@@ -109,8 +117,15 @@ const getRandomStationUrl = (genre: string) => {
 	return selectedStations[Math.floor(Math.random() * selectedStations.length)]
 }
 
-export const playOtherSound = (connection: VoiceConnection, soundUrl: string) => {
-	const dispatcher = connection.play(soundUrl)
-	dispatcher.on("end", (end: any) => connection.play(currentStationUrl))
+export const playOtherSound = (connection: VoiceConnection) => {
+
+    playFartNoise(connection)
+
+    currentStationUrl 
+        ? 
+            setTimeout(() => {connection.play(currentStationUrl, { volume: 0.314159265359 }) }, 1000)
+        : 
+            connection.off
+
 }
 

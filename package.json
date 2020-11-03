@@ -14,6 +14,7 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "axios": "^0.21.0",
+    "beautiful-dom": "^1.0.8",
     "discord.js": "^12.3.0",
     "ffmpeg-static": "^4.2.7",
     "forever": "^3.0.0",
