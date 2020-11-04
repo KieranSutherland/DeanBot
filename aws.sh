@@ -1,13 +1,14 @@
 #! /bin/sh
+awsAddress="ubuntu@ec2-3-8-201-120.eu-west-2.compute.amazonaws.com"
 pubkey="wehatedeanbot.pem"
 buildDir="build"
 command=$1
 command=${command,,} # converts to lowercase
 
 if [ ${command} == "start" ]; then
-    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd "${buildDir}"; forever start main.js"
+    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ${awsAddress} "cd "${buildDir}"; forever start main.js"
 elif [ ${command} == "stop" ]; then
-    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "forever stopall"
+    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ${awsAddress} "forever stopall"
 elif [ ${command} == "deploy" ]; then
     ./deployBuildToAWS.sh
 else

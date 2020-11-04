@@ -1,4 +1,5 @@
 #! /bin/sh
+awsAddress="ubuntu@ec2-3-8-201-120.eu-west-2.compute.amazonaws.com"
 pubkey="wehatedeanbot.pem"
 buildDir="build"
 
@@ -12,12 +13,12 @@ cp -rf resources "${buildDir}"
 cp package.json "${buildDir}"
 cp package-lock.json "${buildDir}"
 
-ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "forever stopall; rm -rf "${buildDir}""
+ssh -i "${pubkey}" -o StrictHostKeyChecking=no ${awsAddress} "forever stopall; rm -rf "${buildDir}""
 
-scp -r -i "${pubkey}" -o StrictHostKeyChecking=no "${buildDir}" ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com:~/
+scp -r -i "${pubkey}" -o StrictHostKeyChecking=no "${buildDir}" ${awsAddress}:~/
 
 # important to cd into buildDir here before starting forever command, otherwise the paths the app uses are all wrong and nothing works
-ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@ec2-35-176-26-62.eu-west-2.compute.amazonaws.com "cd "${buildDir}"; npm install; forever start main.js"
+ssh -i "${pubkey}" -o StrictHostKeyChecking=no ${awsAddress} "cd "${buildDir}"; npm install; forever start main.js"
 
 rm -rf "${buildDir}"
 
