@@ -10,6 +10,11 @@ var client = new Discord.Client(); // The bot
 
 client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord.VoiceState) => {
 
+	// If bot is the last one in the channel, disconnect the bot
+	if (oldMember.channel?.members.size === 1 && oldMember.channel?.members.filter(user => user.id === constants.botUserId).size === 1) {
+		client.voice?.connections.each(conn => conn.disconnect())
+	}
+
     // Tell Dean to get back to work when he enters a voice channel
     // backToWorkDeanVoiceJoin(oldMember, newMember); temporarily removed because it's annoying
 

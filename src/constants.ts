@@ -15,6 +15,7 @@ export const deanRoleId: string = '732595910344704141';
 export const leMemeSupremeRoleId: string = '257637882112507904';
 
 // User Id
+export const botUserId: string = '744175850831872080';
 export const deanUserId: string = '705420522313220097';
 export const kieranUserId: string = '232909325633454081';
 export const harryUserId: string = '254748756971487234';
