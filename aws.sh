@@ -7,7 +7,7 @@ command=$1
 command=${command,,} # converts to lowercase
 
 if [ ${command} == "start" ]; then
-    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@${publicIp} "docker run "${dockerImageName}""
+    ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@${publicIp} "docker run --detach "${dockerImageName}""
 elif [ ${command} == "stop" ]; then
     ssh -i "${pubkey}" -o StrictHostKeyChecking=no ubuntu@${publicIp} "docker stop $(docker ps -aq)"
 elif [ ${command} == "deploy" ]; then
