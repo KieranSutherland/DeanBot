@@ -16,7 +16,7 @@
     "discord.js": "^12.3.0",
     "ffmpeg-static": "^4.2.7",
     "fs": "0.0.1-security",
-    "google-tts-api": "0.0.4",
+    "google-tts-api": "^2.0.1",
     "path": "^0.12.7"
   },
   "devDependencies": {
