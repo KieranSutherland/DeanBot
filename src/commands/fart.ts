@@ -12,7 +12,7 @@ export const fart = (message: Message) => {
 }
 
 export const playFartNoise = async (voiceChannel: VoiceChannel | null | undefined) => {
-    if(!voiceChannel) return;
+    if (!voiceChannel) return;
 
     const connection = await voiceChannel.join();
     const dispatcher = connection.play(path.join(constants.fartNoisesDir, getRandomFartFilename()));

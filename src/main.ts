@@ -9,11 +9,10 @@ import { dailyPic } from './dailyPic.js';
 var client = new Discord.Client(); // The bot
 
 client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord.VoiceState) => {
-
-	// If bot is the last one in the channel, disconnect the bot
-	if (oldMember.channel?.members.size === 1 && oldMember.channel?.members.filter(user => user.id === constants.botUserId).size === 1) {
-		client.voice?.connections.each(conn => conn.disconnect())
-	}
+    // If bot is the last one in the channel, disconnect the bot
+    if (oldMember.channel?.members.size === 1 && oldMember.channel?.members.filter(user => user.id === constants.botUserId).size === 1) {
+        client.voice?.connections.each(conn => conn.disconnect())
+    }
 
     // Tell Dean to get back to work when he enters a voice channel
     // backToWorkDeanVoiceJoin(oldMember, newMember); temporarily removed because it's annoying
@@ -23,14 +22,13 @@ client.on('voiceStateUpdate', (oldMember: Discord.VoiceState, newMember: Discord
 
     // Check if new user is the one to be avoided, if so, take him away
     exileUserVoiceJoin(newMember);
-    
 })
 
 // Command handler and dean shutter-upper
 client.on('message', (message: Discord.Message) => {
-    
-    if(message.author.id === constants.deanUserId && new Date().getDay() != 0) {
-        if(message.content.startsWith(constants.prefix)) {
+
+    if (message.author.id === constants.deanUserId && new Date().getDay() != 0) {
+        if (message.content.startsWith(constants.prefix)) {
             message.channel.send('Fuck off Dean you\'re only allowed to use commands on Sundays because YOU STINK');
         } else {
             message.channel.send('> ' + message.content + '\nShut up Dean');
@@ -38,7 +36,7 @@ client.on('message', (message: Discord.Message) => {
         return;
     }
 
-    if(message.author.bot || !message.content.startsWith("!")) {
+    if (message.author.bot || !message.content.startsWith("!")) {
         return;
     }
 
@@ -48,9 +46,10 @@ client.on('message', (message: Discord.Message) => {
 // Daily Dean pic
 client.on('ready', () => {
     console.log("Bot online");
-    
     dailyPic(client);
 });
 
+client.on("error", () => { });
 
 client.login(constants.loginKey);
+
