@@ -1,5 +1,5 @@
-# WE HATE DEAN
-WHAT'S UP GUYS BILLY MAZE HERE AND THIS IS THE WEHATEDEANBOT. WE DO NOT LIKE HIM, HE STINKS
+# DEAN BOT
+WHAT'S UP GUYS BILLY MAZE HERE AND THIS IS THE DEAN BOT. WE DO NOT LIKE HIM, HE STINKS.
 
 ## Requirements
 Make sure you have Node installed locally before you attempt to do this, which can be downloaded [here](https://nodejs.org/en/).
