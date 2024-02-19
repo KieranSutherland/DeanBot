@@ -6,9 +6,9 @@ Make sure you have Node installed locally before you attempt to do this, which c
 
 ## Wanna use this locally? 
 
-    git clone https://github.com/KieranSutherland/WeHateDean.git
+    git clone https://github.com/KieranSutherland/DeanBot.git
     
-    cd WeHateDean
+    cd DeanBot
     
     npm install --force
     
